@@ -17,6 +17,7 @@ final class HomeViewModel: NSObject, ObservableObject {
     private (set)var onTapConnect: ((CBPeripheral) -> Void)!
     @Published var didConnectPeripheral = false
     @Published var discoveredPeripherals: [CBPeripheral] = []
+    @Published var lightLED = false
     
     override init() {
         super.init()
@@ -32,6 +33,12 @@ final class HomeViewModel: NSObject, ObservableObject {
         onTapConnect = { peripheral in
             bluetoothService.connect(to: peripheral)
         }
+        
+        $lightLED
+            .sink { shouldLight in
+                bluetoothService.writeLED(shouldLight: shouldLight)
+            }
+            .store(in: &cancellableSet)
 
         bluetoothService.$cbManagerState
             .compactMap { $0 }

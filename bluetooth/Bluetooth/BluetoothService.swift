@@ -18,6 +18,7 @@ final class BluetoothService: NSObject, CBPeripheralManagerDelegate {
     let LEDServiceUUID = "8c581e7e-b368-11ed-afa1-0242ac120002"
     let LEDCharacteristicUUID = "a6fa1778-b368-11ed-afa1-0242ac120002"
     var LEDCharacteristic: CBCharacteristic?
+    var peripheral: CBPeripheral?
     
     override init() {
         super.init()
@@ -31,6 +32,12 @@ final class BluetoothService: NSObject, CBPeripheralManagerDelegate {
     
     func connect(to peripheral: CBPeripheral) {
         centralManager?.connect(peripheral, options: nil)
+    }
+    
+    func writeLED(shouldLight: Bool) {
+        let str = shouldLight ? "1" : "0"
+        let data = str.data(using: .utf8)
+        peripheral?.writeValue(data!, for: LEDCharacteristic!, type: .withResponse)
     }
 }
 
@@ -49,6 +56,7 @@ extension BluetoothService: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        self.peripheral = peripheral
         peripheral.delegate = self
         peripheral.discoverServices(nil)
         didConnectPeripheral = true
