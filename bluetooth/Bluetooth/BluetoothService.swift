@@ -74,7 +74,7 @@ extension BluetoothService: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         service.characteristics?.forEach { characteristic in
             if characteristic.uuid == CBUUID(string: LEDCharacteristicUUID) {
-                peripheral.setNotifyValue(true, for: (service.characteristics?[0])!)
+                peripheral.setNotifyValue(true, for: characteristic)
                 LEDCharacteristic = characteristic
             }
         }
