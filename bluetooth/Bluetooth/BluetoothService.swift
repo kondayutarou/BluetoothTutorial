@@ -15,6 +15,7 @@ final class BluetoothService: NSObject, CBPeripheralManagerDelegate {
     @Published var cbManagerState: CBManagerState?
     @Published var didConnectPeripheral = false
     @Published var discoveredPeripherals: [CBPeripheral] = []
+    @Published var command: String = ""
     let LEDServiceUUID = "8c581e7e-b368-11ed-afa1-0242ac120002"
     let LEDCharacteristicUUID = "a6fa1778-b368-11ed-afa1-0242ac120002"
     var LEDCharacteristic: CBCharacteristic?
@@ -34,10 +35,8 @@ final class BluetoothService: NSObject, CBPeripheralManagerDelegate {
         centralManager?.connect(peripheral, options: nil)
     }
     
-    func writeLED(shouldLight: Bool) {
-        let str = shouldLight ? "1" : "0"
-        let data = str.data(using: .utf8)
-        peripheral?.writeValue(data!, for: LEDCharacteristic!, type: .withResponse)
+    func readJoystick() {
+        peripheral?.readValue(for: LEDCharacteristic!)
     }
 }
 
@@ -63,19 +62,24 @@ extension BluetoothService: CBCentralManagerDelegate {
     }
 }
 
+
+
 extension BluetoothService: CBPeripheralDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        peripheral.discoverCharacteristics(nil, for: (peripheral.services?.first)!)
+        if let service = peripheral.services?.first {
+            print("Searching characteristics")
+            peripheral.discoverCharacteristics(nil, for: service)
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        service.characteristics?.forEach { characteristic in
+        for characteristic in service.characteristics! {
             if characteristic.uuid == CBUUID(string: LEDCharacteristicUUID) {
+                self.LEDCharacteristic = characteristic
                 peripheral.setNotifyValue(true, for: characteristic)
-                LEDCharacteristic = characteristic
             }
         }
     }
@@ -85,6 +89,7 @@ extension BluetoothService: CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        
+        let decoded = String(data: characteristic.value!, encoding: .utf8)
+        command = decoded!
     }
 }

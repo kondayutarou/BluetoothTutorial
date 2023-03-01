@@ -18,6 +18,7 @@ final class HomeViewModel: NSObject, ObservableObject {
     @Published var didConnectPeripheral = false
     @Published var discoveredPeripherals: [CBPeripheral] = []
     @Published var lightLED = false
+    @Published var command: String = ""
     
     override init() {
         super.init()
@@ -36,7 +37,7 @@ final class HomeViewModel: NSObject, ObservableObject {
         
         $lightLED
             .sink { shouldLight in
-                bluetoothService.writeLED(shouldLight: shouldLight)
+                bluetoothService.readJoystick()
             }
             .store(in: &cancellableSet)
 
@@ -68,6 +69,10 @@ final class HomeViewModel: NSObject, ObservableObject {
                 self?.discoveredPeripherals = peripherals
             }
             .store(in: &cancellableSet)
+        
+        bluetoothService.$command
+            .removeDuplicates()
+            .assign(to: &$command)
     }
     
     deinit {

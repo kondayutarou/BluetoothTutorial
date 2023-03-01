@@ -34,9 +34,7 @@ struct HomeView: View {
         .padding(.vertical, 40.0)
         .popover(isPresented: $viewModel.didConnectPeripheral) {
             Text("Connected to peripheral")
-            Button("Toggle led") {
-                viewModel.lightLED = !viewModel.lightLED
-            }
+            Text("Command: \(viewModel.command)")
         }
     }
 }
