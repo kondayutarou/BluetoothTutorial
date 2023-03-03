@@ -16,6 +16,11 @@
 		DBA46A2D29161E8600578876 /* bluetoothUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA46A2C29161E8600578876 /* bluetoothUITestsLaunchTests.swift */; };
 		DBA46A3C2916212500578876 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA46A3B2916212500578876 /* BluetoothService.swift */; };
 		DBA46A3E2916403000578876 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA46A3D2916403000578876 /* HomeViewModel.swift */; };
+		DBCF3A1A29B1F7DF00483768 /* DesignViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF3A1929B1F7DF00483768 /* DesignViewWrapper.swift */; };
+		DBCF3A1C29BD42A500483768 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF3A1B29BD42A500483768 /* LineView.swift */; };
+		DBCF3A1E29BD4B3200483768 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF3A1D29BD4B3200483768 /* CircleView.swift */; };
+		DBCF3A2129BD4E7700483768 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF3A2029BD4E7700483768 /* UIView+Extensions.swift */; };
+		DBCF3A2329BD571100483768 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCF3A2229BD571100483768 /* Double+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		DBA46A3B2916212500578876 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		DBA46A3D2916403000578876 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DBA46A3F2916443F00578876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DBCF3A1929B1F7DF00483768 /* DesignViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignViewWrapper.swift; sourceTree = "<group>"; };
+		DBCF3A1B29BD42A500483768 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		DBCF3A1D29BD4B3200483768 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		DBCF3A2029BD4E7700483768 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		DBCF3A2229BD571100483768 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				DBA46A3F2916443F00578876 /* Info.plist */,
+				DBCF3A1F29BD4E6800483768 /* Util */,
 				DBA46A0F29161E8500578876 /* bluetoothApp.swift */,
 				DBA46A3A2916210F00578876 /* Bluetooth */,
 				DBA46A39291620F100578876 /* View */,
@@ -139,6 +150,9 @@
 			children = (
 				DBA46A1129161E8500578876 /* HomeView.swift */,
 				DBA46A3D2916403000578876 /* HomeViewModel.swift */,
+				DBCF3A1B29BD42A500483768 /* LineView.swift */,
+				DBCF3A1D29BD4B3200483768 /* CircleView.swift */,
+				DBCF3A1929B1F7DF00483768 /* DesignViewWrapper.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +163,15 @@
 				DBA46A3B2916212500578876 /* BluetoothService.swift */,
 			);
 			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		DBCF3A1F29BD4E6800483768 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				DBCF3A2029BD4E7700483768 /* UIView+Extensions.swift */,
+				DBCF3A2229BD571100483768 /* Double+Extensions.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,9 +304,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCF3A1A29B1F7DF00483768 /* DesignViewWrapper.swift in Sources */,
+				DBCF3A2329BD571100483768 /* Double+Extensions.swift in Sources */,
 				DBA46A1229161E8500578876 /* HomeView.swift in Sources */,
 				DBA46A3C2916212500578876 /* BluetoothService.swift in Sources */,
 				DBA46A1029161E8500578876 /* bluetoothApp.swift in Sources */,
+				DBCF3A1C29BD42A500483768 /* LineView.swift in Sources */,
+				DBCF3A1E29BD4B3200483768 /* CircleView.swift in Sources */,
+				DBCF3A2129BD4E7700483768 /* UIView+Extensions.swift in Sources */,
 				DBA46A3E2916403000578876 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

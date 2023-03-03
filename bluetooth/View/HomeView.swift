@@ -29,6 +29,8 @@ struct HomeView: View {
                         }
                     }
                 }
+                
+                DesignViewWrapper()
             }
         }
         .padding(.vertical, 40.0)
