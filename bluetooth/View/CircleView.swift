@@ -8,7 +8,14 @@
 import UIKit
 
 final class CircleView: UIView {
-    override init(frame: CGRect) {
+    private(set) var width = 100.0
+    private(set) var height = 100.0
+    private(set) var startingPoint = CGPoint(x: 0.0, y: 0.0)
+
+    init(frame: CGRect, width: Double, height: Double, startingPoint: CGPoint) {
+        self.width = width
+        self.height = height
+        self.startingPoint = startingPoint
         super.init(frame: frame)
         self.setTransparentBackground()
     }
@@ -19,7 +26,7 @@ final class CircleView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let path = UIBezierPath(ovalIn: CGRect(x: startingPoint.x, y: startingPoint.y, width: width, height: height))
         UIColor.yellow.setStroke()
         UIColor.yellow.setFill()
         path.lineWidth = 0.0

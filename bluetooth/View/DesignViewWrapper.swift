@@ -19,7 +19,12 @@ struct DesignViewWrapper: UIViewRepresentable {
         let view = UIView()
         
         let lineView = LineView(frame: CGRect(x: 0, y: 0, width: 300, height: 300), length: 500.0, degrees: 45)
-        let circleView = CircleView(frame: CGRect(x: centerX, y: 50, width: 100, height: 100))
+        let circleView = CircleView(
+            frame: CGRect(x: centerX, y: 50, width: 100, height: 100),
+            width: 100.0,
+            height: 100.0,
+            startingPoint: CGPoint(x: 0.0, y: 0.0)
+        )
         view.backgroundColor = .red
         view.addSubview(lineView)
         view.addSubview(circleView)
