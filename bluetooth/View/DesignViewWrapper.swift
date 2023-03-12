@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DesignViewWrapper: UIViewRepresentable {
     let centerX: CGFloat
+    let circleViewRadius = 100.0
     
     init(centerX: CGFloat) {
         self.centerX = centerX
@@ -19,15 +20,18 @@ struct DesignViewWrapper: UIViewRepresentable {
         let view = UIView()
         
         let lineView = LineView(frame: CGRect(x: 0, y: 0, width: 300, height: 300), length: 500.0, degrees: 45)
-        let circleView = CircleView(
-            frame: CGRect(x: centerX, y: 50, width: 100, height: 100),
-            width: 100.0,
-            height: 100.0,
-            startingPoint: CGPoint(x: 0.0, y: 0.0)
+        let topCircleView = CircleView(
+            frame: CGRect(
+                x: centerX - circleViewRadius,
+                y: 0.0,
+                width: circleViewRadius * 2,
+                height: circleViewRadius * 2
+            )
         )
+        topCircleView.backgroundColor = .green
         view.backgroundColor = .red
         view.addSubview(lineView)
-        view.addSubview(circleView)
+        view.addSubview(topCircleView)
         return view
     }
     
