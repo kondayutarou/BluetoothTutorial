@@ -74,6 +74,16 @@ struct DesignViewWrapper: UIViewRepresentable {
             degrees: 300.0,
             startingPoint: CGPoint(x: 0.0, y: leftLine.bounds.height)
         )
+        let bottomCircleView = CircleView(
+            frame: CGRect(
+                x: centerX - circleViewRadius,
+                y: leftLine.bounds.maxY,
+                width: circleViewRadius * 2,
+                height: circleViewRadius * 2
+            )
+        )
+        bottomCircleView.backgroundColor = .red
+        view.addSubview(bottomCircleView)
 
         view.addSubview(verticalLine)
         view.addSubview(leftLine)
