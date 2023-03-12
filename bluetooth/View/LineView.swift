@@ -29,7 +29,12 @@ final class LineView: UIView {
         let path = UIBezierPath()
         path.move(to: startingPoint)
         path.addLine(to: CGPoint(x: startingPoint.x + length * cos(radian), y: startingPoint.y + length * sin(radian)))
-        path.lineWidth = 2.0
+        path.lineWidth = 1.0
+        
+        let dashPattern: [CGFloat] = [10, 5, 5, 5]
+        path.setLineDash(dashPattern, count: 1, phase: 0)
+        path.lineCapStyle = .round
+        
         UIColor.green.setStroke()
         path.stroke()
         path.close()
