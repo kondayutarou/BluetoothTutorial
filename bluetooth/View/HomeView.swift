@@ -31,7 +31,10 @@ struct HomeView: View {
                         }
                     }
 
-                    DesignViewWrapper(centerX: geometry.frame(in: .global).midX)
+                    DesignViewWrapper(
+                        centerX: geometry.frame(in: .global).midX,
+                        superviewWidth: geometry.frame(in: .global).width
+                    )
                 }
             }
             .padding(.vertical, 40.0)

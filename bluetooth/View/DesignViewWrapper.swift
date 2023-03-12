@@ -10,38 +10,56 @@ import SwiftUI
 
 struct DesignViewWrapper: UIViewRepresentable {
     let centerX: CGFloat
-    let circleViewRadius = 100.0
+    let superviewWidth: CGFloat
+    let circleViewRadius: CGFloat
+    let circleSpacing: CGFloat = 48.0
     
-    init(centerX: CGFloat) {
+    init(centerX: CGFloat, superviewWidth: CGFloat) {
         self.centerX = centerX
+        self.superviewWidth = superviewWidth
+        self.circleViewRadius = superviewWidth / 8
     }
 
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()
         
         let lineView = LineView(frame: CGRect(x: 0, y: 0, width: 300, height: 300), length: 500.0, degrees: 45)
-        let topCircleView = CircleView(
+        let leftCircleView = CircleView(
             frame: CGRect(
-                x: centerX - circleViewRadius,
+                x: centerX - circleViewRadius * 2 - circleSpacing / 2,
                 y: 0.0,
                 width: circleViewRadius * 2,
                 height: circleViewRadius * 2
             )
         )
-        topCircleView.backgroundColor = .green
+        let rightCircleView = CircleView(
+            frame: CGRect(
+                x: centerX + circleSpacing / 2,
+                y: 0.0,
+                width: circleViewRadius * 2,
+                height: circleViewRadius * 2
+            )
+        )
+        let bottomCircleView = CircleView(
+            frame: CGRect(
+                x: centerX - circleViewRadius,
+                y: leftCircleView.bounds.size.height,
+                width: circleViewRadius * 2,
+                height: circleViewRadius * 2
+            )
+        )
+        rightCircleView.backgroundColor = .blue
+        leftCircleView.backgroundColor = .brown
+        bottomCircleView.backgroundColor = .green
         view.backgroundColor = .red
         view.addSubview(lineView)
-        view.addSubview(topCircleView)
+        view.addSubview(bottomCircleView)
+        view.addSubview(leftCircleView)
+        view.addSubview(rightCircleView)
         return view
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
-    }
-}
-
-struct DesignViewWrapper_Previews: PreviewProvider {
-    static var previews: some View {
-        DesignViewWrapper(centerX: 50.0)
     }
 }
