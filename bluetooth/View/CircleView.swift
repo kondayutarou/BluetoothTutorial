@@ -27,10 +27,7 @@ final class CircleView: UIView {
     
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: CGRect(x: startingPoint.x, y: startingPoint.y, width: width, height: height))
-        UIColor.yellow.setStroke()
         UIColor.yellow.setFill()
-        path.lineWidth = 0.0
-        path.stroke()
         path.fill()
         path.close()
     }
