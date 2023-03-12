@@ -11,32 +11,34 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 40.0) {
-                Button(action: viewModel.onTapStartScanning) {
-                    Text("Scan for peripherals")
-                }
-                
-                Button(action: viewModel.onTapStopScanning) {
-                    Text("Stop scanning")
-                }
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 40.0) {
+                    Button(action: viewModel.onTapStartScanning) {
+                        Text("Scan for peripherals")
+                    }
+                    
+                    Button(action: viewModel.onTapStopScanning) {
+                        Text("Stop scanning")
+                    }
 
-                ForEach(viewModel.discoveredPeripherals, id: \.identifier) { peripheral in
-                    HStack {
-                        Text(peripheral.name ?? peripheral.identifier.uuidString)
-                        Button("Connect") {
-                            viewModel.onTapConnect(peripheral)
+                    ForEach(viewModel.discoveredPeripherals, id: \.identifier) { peripheral in
+                        HStack {
+                            Text(peripheral.name ?? peripheral.identifier.uuidString)
+                            Button("Connect") {
+                                viewModel.onTapConnect(peripheral)
+                            }
                         }
                     }
+
+                    DesignViewWrapper(centerX: geometry.frame(in: .global).midX)
                 }
-                
-                DesignViewWrapper()
             }
-        }
-        .padding(.vertical, 40.0)
-        .popover(isPresented: $viewModel.didConnectPeripheral) {
-            Text("Connected to peripheral")
-            Text("Command: \(viewModel.command)")
+            .padding(.vertical, 40.0)
+            .popover(isPresented: $viewModel.didConnectPeripheral) {
+                Text("Connected to peripheral")
+                Text("Command: \(viewModel.command)")
+            }
         }
     }
 }
