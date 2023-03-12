@@ -12,9 +12,10 @@ final class LineView: UIView {
     private(set) var radian = 0.0
     private(set) var startingPoint = CGPoint(x: 0.0, y: 0.0)
 
-    init(frame: CGRect, length: Double, degrees: Double) {
+    init(frame: CGRect, length: Double, degrees: Double, startingPoint: CGPoint) {
         self.length = length
         self.radian = degrees.toRadian
+        self.startingPoint = startingPoint
         super.init(frame: frame)
         self.setTransparentBackground()
     }

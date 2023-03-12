@@ -47,16 +47,37 @@ struct DesignViewWrapper: UIViewRepresentable {
         view.addSubview(rightCircleView)
         let distance = rightCircleView.center.x - leftCircleView.center.x
         
-        let verticalLine = LineView(frame: CGRect(origin: CGPoint(x: centerX, y: 0.0), size: CGSize(width: 4.0, height: 900.0)), length: 900, degrees: 90.0)
+        let verticalLine = LineView(
+            frame: CGRect(origin: CGPoint(x: centerX, y: 0.0), size: CGSize(width: 4.0, height: 900.0)),
+            length: 900,
+            degrees: 90.0,
+            startingPoint: CGPoint(x: centerX, y: 0.0)
+        )
         let horizontalLine = LineView(
-            frame: CGRect(origin: leftCircleView.center, size: CGSize(width: distance, height: circleViewRadius)), length: distance, degrees: 0.0
+            frame: CGRect(origin: leftCircleView.center, size: CGSize(width: distance, height: circleViewRadius)),
+            length: distance,
+            degrees: 0.0,
+            startingPoint: CGPoint(x: 0.0, y: 0.0)
         )
         let leftLine = LineView(
-            frame: CGRect(origin: leftCircleView.center, size: CGSize(width: 500, height: 500)), length: distance, degrees: 60.0
+            frame: CGRect(
+                origin: leftCircleView.center,
+                size: CGSize(width: distance / 2, height: (pow(distance, 2) - pow(distance / 2, 2)).squareRoot() )
+            ),
+            length: distance,
+            degrees: 60.0,
+            startingPoint: CGPoint(x: 0.0, y: 0.0)
+        )
+        let rightLine = LineView(
+            frame: CGRect(origin: CGPoint(x: centerX, y: leftCircleView.center.y), size: CGSize(width: distance / 2, height: leftLine.bounds.height)),
+            length: distance,
+            degrees: 300.0,
+            startingPoint: CGPoint(x: 0.0, y: leftLine.bounds.height)
         )
 
         view.addSubview(verticalLine)
         view.addSubview(leftLine)
+        view.addSubview(rightLine)
         view.addSubview(horizontalLine)
         return view
     }
