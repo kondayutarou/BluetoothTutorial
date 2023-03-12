@@ -29,7 +29,7 @@ final class LineView: UIView {
         let path = UIBezierPath()
         path.move(to: startingPoint)
         path.addLine(to: CGPoint(x: startingPoint.x + length * cos(radian), y: startingPoint.y + length * sin(radian)))
-        path.lineWidth = 1.0
+        path.lineWidth = 4.0
         
         let dashPattern: [CGFloat] = [10, 5, 5, 5]
         path.setLineDash(dashPattern, count: 1, phase: 0)

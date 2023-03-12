@@ -8,7 +8,10 @@
 import UIKit
 
 final class CircleView: UIView {
-    override init(frame: CGRect) {
+    private(set)var circleFillColor: UIColor = .black
+
+    init(frame: CGRect, circleFillColor: UIColor) {
+        self.circleFillColor = circleFillColor
         super.init(frame: frame)
         self.setTransparentBackground()
     }
@@ -20,7 +23,7 @@ final class CircleView: UIView {
     
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        UIColor.yellow.setFill()
+        circleFillColor.setFill()
         path.fill()
         path.close()
     }
