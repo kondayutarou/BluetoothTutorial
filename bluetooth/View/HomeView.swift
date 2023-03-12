@@ -33,7 +33,10 @@ struct HomeView: View {
 
                     DesignViewWrapper(
                         centerX: geometry.frame(in: .global).midX,
-                        superviewWidth: geometry.frame(in: .global).width
+                        superviewWidth: geometry.frame(in: .global).width,
+                        showHorizontalLine: true,
+                        showLeftLine: false,
+                        showRightLine: true
                     )
                 }
             }

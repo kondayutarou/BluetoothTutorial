@@ -13,11 +13,21 @@ struct DesignViewWrapper: UIViewRepresentable {
     let superviewWidth: CGFloat
     let circleViewRadius: CGFloat
     let circleSpacing: CGFloat = 48.0
+    let showHorizontalLine: Bool
+    let showLeftLine: Bool
+    let showRightLine: Bool
     
-    init(centerX: CGFloat, superviewWidth: CGFloat) {
+    init(centerX: CGFloat,
+         superviewWidth: CGFloat,
+         showHorizontalLine: Bool,
+         showLeftLine: Bool,
+         showRightLine: Bool) {
         self.centerX = centerX
         self.superviewWidth = superviewWidth
         self.circleViewRadius = superviewWidth / 8
+        self.showHorizontalLine = showHorizontalLine
+        self.showLeftLine = showLeftLine
+        self.showRightLine = showRightLine
     }
 
     func makeUIView(context: Context) -> some UIView {
@@ -75,9 +85,16 @@ struct DesignViewWrapper: UIViewRepresentable {
             circleFillColor: .gray
         )
 
-        view.addSubview(leftLine)
-        view.addSubview(rightLine)
-        view.addSubview(horizontalLine)
+        if showLeftLine {
+            view.addSubview(leftLine)
+        }
+        if showRightLine {
+            view.addSubview(rightLine)
+        }
+        if showHorizontalLine {
+            view.addSubview(horizontalLine)
+        }
+
         view.addSubview(leftCircleView)
         view.addSubview(rightCircleView)
         view.addSubview(bottomCircleView)
