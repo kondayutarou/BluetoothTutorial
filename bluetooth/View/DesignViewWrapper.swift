@@ -45,10 +45,10 @@ struct DesignViewWrapper: UIViewRepresentable {
         let distance = rightCircleView.center.x - leftCircleView.center.x
         
         let horizontalLine = LineView(
-            frame: CGRect(origin: leftCircleView.center, size: CGSize(width: distance, height: circleViewRadius)),
+            frame: CGRect(origin: CGPoint(x: leftCircleView.center.x, y: leftCircleView.center.y - 4.0), size: CGSize(width: distance, height: 8.0)),
             length: distance,
             degrees: 0.0,
-            startingPoint: CGPoint(x: 0.0, y: 0.0)
+            startingPoint: CGPoint(x: 0.0, y: 4.0)
         )
         let leftLine = LineView(
             frame: CGRect(
