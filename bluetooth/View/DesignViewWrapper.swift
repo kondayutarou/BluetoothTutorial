@@ -23,7 +23,6 @@ struct DesignViewWrapper: UIViewRepresentable {
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()
         
-        let lineView = LineView(frame: CGRect(x: 0, y: 0, width: 300, height: 300), length: 500.0, degrees: 45)
         let leftCircleView = CircleView(
             frame: CGRect(
                 x: centerX - circleViewRadius * 2 - circleSpacing / 2,
@@ -52,10 +51,16 @@ struct DesignViewWrapper: UIViewRepresentable {
         leftCircleView.backgroundColor = .brown
         bottomCircleView.backgroundColor = .green
         view.backgroundColor = .red
-        view.addSubview(lineView)
         view.addSubview(bottomCircleView)
         view.addSubview(leftCircleView)
         view.addSubview(rightCircleView)
+        let distance = rightCircleView.center.x - leftCircleView.center.x
+        
+        let horizontalLine = LineView(
+            frame: CGRect(origin: leftCircleView.center, size: CGSize(width: distance, height: circleViewRadius)), length: distance, degrees: 0.0
+        )
+
+        view.addSubview(horizontalLine)
         return view
     }
     
